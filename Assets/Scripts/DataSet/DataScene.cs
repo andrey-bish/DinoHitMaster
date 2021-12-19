@@ -1,7 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
-using DinoHitMaster.Views;
 
 
 namespace DinoHitMaster.DataSet
@@ -10,5 +8,7 @@ namespace DinoHitMaster.DataSet
     class DataScene: ScriptableObject
     {
         public List<GameObject> WayPoints = new List<GameObject>();
+
+        public Vector3 CameraOffset;
     }
 }

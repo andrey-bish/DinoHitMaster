@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using DinoHitMaster.Interface;
 
 
 namespace DinoHitMaster.Views
 {
-    class PlayerView: MonoBehaviour
+    class PlayerView: MonoBehaviour, IPlayer
     {
 
     }

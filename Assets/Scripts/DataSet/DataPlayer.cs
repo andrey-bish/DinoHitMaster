@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using DinoHitMaster.Views;
 
 
@@ -10,5 +8,13 @@ namespace DinoHitMaster.DataSet
     internal class DataPlayer: ScriptableObject
     {
         public PlayerView PlayerPrefab;
+        public GameObject PlayerMenPrefab;
+        public GameObject PlayerWomanPrefab;
+
+        [Header("Player parametrs")]
+        public float Speed;
+        public Vector3 RotationPlayer;
+        public RuntimeAnimatorController PlayerAnimatorController;
+        public Avatar PlayerAvatar;
     }
 }
