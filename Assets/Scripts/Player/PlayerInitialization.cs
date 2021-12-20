@@ -41,19 +41,21 @@ namespace DinoHitMaster.Player
         public void Initialization()
         {
             _wayPointController = Object.FindObjectOfType<WayPointController>();
-
+            _data.Player.TypeBullet = "SimpleBullet";
             _player = new PlayerFactory().Create<PlayerView>(_data.Player.PlayerMenPrefab, _data.Player.RotationPlayer);
             _player.transform.position = _wayPointController.WayPoints[0].transform.position;
 
             _camera = Camera.main;
             _camera.transform.parent = _player.transform;
             _camera.transform.position = _player.transform.position + _data.Scene.CameraOffset;
-
+            var weaponPosition = GameObject.Find("ShootPosition");
+            Debug.Log(weaponPosition);
             TryGetCompontents();
             WayPointSubscribe();
-
+            var bullet = Object.FindObjectOfType<BulletView>();
             var playerMovement = new PlayerMovement(_playerNavMeshAgent, _animator, _wayPointController.WayPoints);
-            new InputController(_mainControllers, playerMovement);
+            var playerShooting = new PlayerShooting(_data, bullet.gameObject, _player.transform, weaponPosition.transform);
+            new InputController(_mainControllers, playerMovement, playerShooting);
 
             //_touch = Input.GetTouch(0);
             //Vector3 touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);

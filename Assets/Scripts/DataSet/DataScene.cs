@@ -10,5 +10,7 @@ namespace DinoHitMaster.DataSet
         public List<GameObject> WayPoints = new List<GameObject>();
 
         public Vector3 CameraOffset;
+
+        public LayerMask layer;
     }
 }

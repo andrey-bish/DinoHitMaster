@@ -11,6 +11,14 @@ namespace DinoHitMaster.DataSet
         public GameObject PlayerMenPrefab;
         public GameObject PlayerWomanPrefab;
 
+        public GameObject CubePref;
+
+        public BulletView SimpeBulletView;
+        public float SimpleBulletDamage;
+        public GameObject Particle;
+        public string TypeBullet;
+        public float BulletSpeed;
+
         [Header("Player parametrs")]
         public float Speed;
         public Vector3 RotationPlayer;
