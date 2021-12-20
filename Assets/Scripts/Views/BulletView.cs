@@ -13,16 +13,16 @@ namespace DinoHitMaster.Views
 
         private void OnTriggerEnter(Collider collier)
         {
-            if(collier.gameObject.GetComponent<EnemyView>())
+            if(collier.gameObject.TryGetComponent<IEnemy>(out var hitObject))
             {
-                
+                hitObject.Hit(_damage);
             }
             Destroy();
         }
 
         private void OnBecameInvisible()
         {
-            BulletObjectPool.ReturnToPool(this);
+            Destroy();
         }
 
         private void Destroy()

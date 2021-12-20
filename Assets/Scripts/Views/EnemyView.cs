@@ -11,21 +11,36 @@ namespace DinoHitMaster.Views
     {
         public event Action<IEnemy> EnemyDead;
 
+        public Animator _enemyAnimator;
+
         private Health _health;
 
+        public Animator GetAnimator()
+        {
+            return _enemyAnimator.GetComponent<Animator>();
+        }
         public void SetHealth(Health health)
         {
             if(_health == null || _health.CurrentHp <= 0)
             {
                 _health = health;
+                Debug.Log(_health);
             }
+        }
+
+        public void Hit(float damage)
+        {
+            _health.Damage(damage);
         }
 
         public void Death()
         {
-
+            EnemyDead?.Invoke(this); 
         }
         
-        
+        private void OnDisable()
+        {
+            EnemyObjectPool.ReturnToPool(this);
+        }
     }
 }

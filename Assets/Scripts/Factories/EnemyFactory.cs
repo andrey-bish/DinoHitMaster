@@ -24,6 +24,8 @@ namespace DinoHitMaster.Factories
             health.OnDeath += enemy.Death;
             _enemyListener.Add(enemy);
             //Прописать спавн
+            new EnemiesSpawner().RandomSpawnLocation(enemy);
+            
             return enemy;
         }
     }

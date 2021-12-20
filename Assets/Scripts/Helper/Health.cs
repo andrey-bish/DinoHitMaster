@@ -18,7 +18,10 @@ namespace DinoHitMaster.Helper
         {
             CurrentHp -= damage;
             if (CurrentHp <= 0)
+            {
                 OnDeath?.Invoke();
+            }
+                
         }
     }
 }

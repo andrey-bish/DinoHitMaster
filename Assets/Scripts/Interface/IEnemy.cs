@@ -1,6 +1,6 @@
 ﻿using System;
 using DinoHitMaster.Helper;
-
+using UnityEngine;
 
 namespace DinoHitMaster.Interface
 {
@@ -8,5 +8,7 @@ namespace DinoHitMaster.Interface
     {
         event Action<IEnemy> EnemyDead;
         void SetHealth(Health health);
-    }
+        void Hit(float damage);
+        Animator GetAnimator();
+     }
 }

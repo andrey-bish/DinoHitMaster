@@ -12,16 +12,18 @@ namespace DinoHitMaster.Helper
 
         public void Add(IEnemy value)
         {
-            //value.EnemyDead += ShowMessageDeathEnemy;
+            value.EnemyDead += ActivateRagDoll;
         }
 
         public void Remove(IEnemy value)
         {
-           // value.EnemyDead -= ShowMessageDeathEnemy;
+            value.EnemyDead -= ActivateRagDoll;
         }
 
-        private void ShowMessageDeathEnemy(IEnemy enemy)
+        private void ActivateRagDoll(IEnemy enemy)
         {
+            var enemyAnimator = enemy.GetAnimator();
+            enemyAnimator.enabled = false;
             Remove(enemy);
         }
 
