@@ -2,24 +2,20 @@
 using DinoHitMaster.Interface;
 using DinoHitMaster.DataSet;
 using DinoHitMaster.ObjectPool;
-using System;
+
 
 namespace DinoHitMaster.Player
 {
     class PlayerShooting: IShoot
     {
-        private  GameObject _cube;
         private readonly Data _data;
         private Touch _touch;
-        private Transform _playerTransform;
         private Transform _weaponTransform;
 
-        public PlayerShooting(Data data, GameObject cube, Transform playerTransform, Transform weaponTransform)
+        public PlayerShooting(Data data)
         {
             _data = data;
-            _cube = cube;
-            _playerTransform = playerTransform;
-            _weaponTransform = weaponTransform;
+            _weaponTransform = GameObject.Find("ShootPosition").transform;
         }
         public void Shoot()
         {

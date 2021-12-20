@@ -48,13 +48,12 @@ namespace DinoHitMaster.Player
             _camera = Camera.main;
             _camera.transform.parent = _player.transform;
             _camera.transform.position = _player.transform.position + _data.Scene.CameraOffset;
-            var weaponPosition = GameObject.Find("ShootPosition");
-            Debug.Log(weaponPosition);
+
             TryGetCompontents();
             WayPointSubscribe();
-            var bullet = Object.FindObjectOfType<BulletView>();
+
             var playerMovement = new PlayerMovement(_playerNavMeshAgent, _animator, _wayPointController.WayPoints);
-            var playerShooting = new PlayerShooting(_data, bullet.gameObject, _player.transform, weaponPosition.transform);
+            var playerShooting = new PlayerShooting(_data);
             new InputController(_mainControllers, playerMovement, playerShooting);
 
             //_touch = Input.GetTouch(0);

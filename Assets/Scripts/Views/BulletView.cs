@@ -13,7 +13,10 @@ namespace DinoHitMaster.Views
 
         private void OnTriggerEnter(Collider collier)
         {
-            Debug.Log(collier.name);
+            if(collier.gameObject.GetComponent<EnemyView>())
+            {
+                
+            }
             Destroy();
         }
 
