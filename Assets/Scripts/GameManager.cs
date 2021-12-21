@@ -23,7 +23,7 @@ namespace DinoHitMaster
         {
             new GameInitialization().StartGame(_data, _mainControllers);
         }
-
+        
         private void Update()
         {
             var deltaTime = Time.deltaTime;

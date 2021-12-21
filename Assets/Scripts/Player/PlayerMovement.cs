@@ -2,6 +2,8 @@
 using UnityEngine.AI;
 using DinoHitMaster.Interface;
 using DinoHitMaster.Views;
+using DinoHitMaster.DataSet;
+using DinoHitMaster.Helper;
 
 
 namespace DinoHitMaster.Player
@@ -10,23 +12,27 @@ namespace DinoHitMaster.Player
     {
         #region Fields
 
-        private NavMeshAgent _playerNavMeshAgent;
-        private Animator _playerAnimator;
+        public int CurrentWayPointIndex;
 
         private WayPointView[] _wayPoints;
 
-        private int _currentWayPointIndex;
+        private NavMeshAgent _playerNavMeshAgent;
+        private CheckEnemy _checkEnemy;
+        private Animator _playerAnimator;
+        private Data _data;
 
         #endregion
 
 
         #region Consructor
 
-        public PlayerMovement(NavMeshAgent playerNavMeshAgent, Animator playerAnimator, WayPointView[] wayPoints)
+        public PlayerMovement(NavMeshAgent playerNavMeshAgent, Animator playerAnimator, WayPointView[] wayPoints, Data data, CheckEnemy checkEnemy)
         {
             _playerNavMeshAgent = playerNavMeshAgent;
             _playerAnimator = playerAnimator;
             _wayPoints = wayPoints;
+            _data = data;
+            _checkEnemy = checkEnemy;
         }
 
         #endregion
@@ -36,21 +42,25 @@ namespace DinoHitMaster.Player
 
         public void Move()
         {
-            if (!_playerAnimator.GetBool("IsMoving"))
+            var hasIsLive =  _checkEnemy.CheckingActiveEnemyAnimator(CurrentWayPointIndex);
+            if (!_playerAnimator.GetBool("IsMoving") && !hasIsLive)
             {
-                if (_currentWayPointIndex < _wayPoints.Length - 1)
+                _data.Player.IsLockShooting = true;
+                if (CurrentWayPointIndex < _wayPoints.Length - 1)
                 {
                     _playerNavMeshAgent.enabled = true;
-                    _currentWayPointIndex++;
+                    CurrentWayPointIndex++;
                     _playerAnimator.SetBool("IsMoving", true);
-                    Debug.Log(_wayPoints[_currentWayPointIndex].transform.position);
-                    _playerNavMeshAgent.SetDestination(_wayPoints[_currentWayPointIndex].transform.position);
+                    _playerNavMeshAgent.SetDestination(_wayPoints[CurrentWayPointIndex].transform.position);
                 }
-                else if (_currentWayPointIndex >= _wayPoints.Length - 1)
+                else 
                 {
-
-                    Debug.Log("End wayPoints");
+                    CurrentWayPointIndex = 0;
                 }
+            }
+            else
+            {
+                _data.Player.IsLockShooting = false;
             }
         }
 
