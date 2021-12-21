@@ -24,8 +24,9 @@ MonoBehaviour:
   SimpleBulletDamage: 10
   Particle: {fileID: 0}
   TypeBullet: SimpleBullet
-  BulletSpeed: 3
+  BulletSpeed: 15
   CurrentIndexWP: 0
+  IsLockShooting: 0
   Speed: 3.5
   RotationPlayer: {x: 0, y: 30, z: 0}
   PlayerAnimatorController: {fileID: 9100000, guid: f9cdc7a3eb199b843a58c42ab1dc6b43,
