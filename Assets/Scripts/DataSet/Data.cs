@@ -9,6 +9,7 @@ namespace DinoHitMaster.DataSet
         [SerializeField] private DataPlayer _player;
         [SerializeField] private DataEnemy _enemies;
         [SerializeField] private DataScene _scene;
+        [SerializeField] private DataWeapon _weapon;
 
         public DataPlayer Player
         {
@@ -26,6 +27,12 @@ namespace DinoHitMaster.DataSet
         {
             get => _scene;
             set => _scene = value;
+        }
+
+        public DataWeapon Weapon
+        {
+            get => _weapon;
+            set => _weapon = value;
         }
     }
 }

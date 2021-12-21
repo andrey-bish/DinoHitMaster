@@ -11,6 +11,8 @@ namespace DinoHitMaster.Controllers
 {
     class SceneManager: IInitialization, ICleanup
     {
+        #region Fields
+
         private readonly Data _data;
 
         private EnemyView[] enemies;
@@ -20,12 +22,22 @@ namespace DinoHitMaster.Controllers
         private WayPointController _wayPointController;
         private Camera _camera;
 
+        #endregion
+
+
+        #region Constructor
+
         public SceneManager(Data data, PlayerInitialization playerInitialization, EnemyInitialization enemyInitialization)
         {
             _data = data;
             _playerInitialization = playerInitialization;
             _enemyInitialization = enemyInitialization;
         }
+
+        #endregion
+
+
+        #region IInitialization realization
 
         public void Initialization()
         {
@@ -39,10 +51,15 @@ namespace DinoHitMaster.Controllers
             _camera.transform.position = _playerInitialization.Player.transform.position + _data.Scene.CameraOffset;
             _camera.transform.rotation = Quaternion.Euler(new Vector3(0.0f, -30.0f, 0.0f));
 
-            Sub();
+            SubscribeMethods();
         }
 
-        private void Sub()
+        #endregion
+
+
+        #region Methods
+
+        private void SubscribeMethods()
         {
             _wayPointController.WayPoints[_wayPointController.WayPoints.Length - 1].FinishWayPoint += EnemyRestart;
             _wayPointController.WayPoints[_wayPointController.WayPoints.Length - 1].FinishWayPoint += _enemyInitialization.SpawnEnemy;
@@ -64,6 +81,11 @@ namespace DinoHitMaster.Controllers
             }
         }
 
+        #endregion
+
+
+        #region ICleanup realization
+
         public void Cleanup()
         {
             _wayPointController.WayPoints[_wayPointController.WayPoints.Length - 1].FinishWayPoint -= _enemyInitialization.SpawnEnemy;
@@ -71,6 +93,6 @@ namespace DinoHitMaster.Controllers
             _wayPointController.WayPoints[_wayPointController.WayPoints.Length - 1].FinishWayPoint -= EnemyRestart;
         }
 
-        
+        #endregion
     }
 }

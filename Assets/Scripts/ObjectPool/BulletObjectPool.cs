@@ -2,10 +2,10 @@
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
-using DinoHitMaster.Views;
+using DinoHitMaster.Factories;
 using DinoHitMaster.Interface;
 using DinoHitMaster.DataSet;
-using DinoHitMaster.Factories;
+
 
 
 namespace DinoHitMaster.ObjectPool
@@ -15,6 +15,8 @@ namespace DinoHitMaster.ObjectPool
         public static Dictionary<string, HashSet<IAmmunition>> _bulletCollection = new Dictionary<string, HashSet<IAmmunition>>();
 
         private static Data _data;
+
+        #region Create Bullet
 
         private static IAmmunition Create(string typeBullet)
         {
@@ -29,6 +31,11 @@ namespace DinoHitMaster.ObjectPool
             }
             return bullet;
         }
+
+        #endregion
+
+
+        #region GetBullet Method
 
         public static Rigidbody GetBullet(Data data, Transform touchTransform)
         {
@@ -52,6 +59,11 @@ namespace DinoHitMaster.ObjectPool
             return bullet;
         }
 
+        #endregion
+
+
+        #region Search in dictionary
+
         private static HashSet<IAmmunition> GetListBullet(string typeBullet)
         {
             if (_bulletCollection.ContainsKey(typeBullet))
@@ -63,8 +75,10 @@ namespace DinoHitMaster.ObjectPool
             {
                 return _bulletCollection[typeBullet] = new HashSet<IAmmunition>();
             }
-                
         }
+
+        #endregion
+
 
         public static void ReturnToPool(IAmmunition bullet)
         {

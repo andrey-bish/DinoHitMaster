@@ -9,9 +9,9 @@ namespace DinoHitMaster.Factories
     class EnemyFactory : IEnemiesFactory
     {
         private readonly DataEnemy _dataEnemy;
-        private readonly EnemyListener _enemyListener;
+        private readonly EnemyRagDollActivation _enemyListener;
 
-        public EnemyFactory(Data data, EnemyListener enemyListener)
+        public EnemyFactory(Data data, EnemyRagDollActivation enemyListener)
         {
             _dataEnemy = data.Enemy;
 

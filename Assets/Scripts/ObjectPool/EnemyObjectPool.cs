@@ -16,7 +16,9 @@ namespace DinoHitMaster.ObjectPool
 
         private static Data _data;
 
-        public static EnemyListener _listenerHitShowDamage;
+        public static EnemyRagDollActivation _listenerHitShowDamage;
+
+        #region Create Enemy
 
         private static IEnemy CreateEnemy(string typeEnemies, Transform spawnTransform)
         {
@@ -32,6 +34,11 @@ namespace DinoHitMaster.ObjectPool
             return enemy;
         }
 
+        #endregion
+
+
+        #region Search in dictionary
+
         private static HashSet<IEnemy> GetListEnemy(string typeEnemies)
         {
             Debug.Log(typeEnemies);
@@ -42,9 +49,13 @@ namespace DinoHitMaster.ObjectPool
             else
             {
                 return _enemyCollection[typeEnemies] = new HashSet<IEnemy>();
-            }
-                
+            }        
         }
+
+        #endregion
+
+
+        #region GetEnemy Method
 
         public static T GetEnemy<T>(Data data, Transform spawnTransform) where T : IEnemy
         {
@@ -66,6 +77,9 @@ namespace DinoHitMaster.ObjectPool
             (enemy as MonoBehaviour).gameObject.SetActive(true);
             return (T)enemy;
         }
+
+        #endregion
+
 
         public static void ReturnToPool(IEnemy enemy)
         {

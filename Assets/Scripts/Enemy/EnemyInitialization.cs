@@ -26,7 +26,8 @@ namespace DinoHitMaster.Enemy
         public void Initialization()
         {
             EnemySpawn = Object.FindObjectOfType<EnemySpawnView>();
-            EnemyObjectPool._listenerHitShowDamage = new EnemyListener();
+            EnemyObjectPool._listenerHitShowDamage = new EnemyRagDollActivation();
+
             SpawnEnemy();
 
             CheckEnemy = new CheckEnemy(EnemySpawn._enemiesSpanwLocation);

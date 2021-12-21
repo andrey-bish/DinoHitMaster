@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using DinoHitMaster.Interface;
 
 
 namespace DinoHitMaster.Views
@@ -9,6 +8,7 @@ namespace DinoHitMaster.Views
     {
         public event Action InsideWayPoint;
         public event Action FinishWayPoint;
+
         public bool IsFinish;
 
         private void OnTriggerEnter(Collider collider)
@@ -23,10 +23,7 @@ namespace DinoHitMaster.Views
                 {
                     InsideWayPoint?.Invoke();
                 }
-                
             }
         }
-
-
     }
 }

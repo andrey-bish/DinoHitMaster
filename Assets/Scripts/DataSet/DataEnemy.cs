@@ -10,8 +10,6 @@ namespace DinoHitMaster.DataSet
     {
         public EnemyView EnemyPrefab;
 
-        public CheckEnemy checkEnemyExemplar;
-
         public Vector3 SpawnSpread;
 
         public float EnemyHp;
