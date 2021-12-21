@@ -10,7 +10,6 @@ namespace DinoHitMaster.Factories
         public T Create<T>(GameObject gameObject, Vector3 playerRotation) where T : IPlayer
         {
             var player = (IPlayer)Object.Instantiate(gameObject).AddComponent<PlayerView>();
-            (player as MonoBehaviour).transform.rotation *= Quaternion.Euler(playerRotation);
             return (T)player;
         }
     }
