@@ -5,6 +5,7 @@ using DinoHitMaster.DataSet;
 using DinoHitMaster.Interface;
 using DinoHitMaster.Views;
 using DinoHitMaster.Factories;
+using DinoHitMaster.Enemy;
 
 
 namespace DinoHitMaster.Player
@@ -16,6 +17,7 @@ namespace DinoHitMaster.Player
         private readonly Data _data;
         private readonly MainControllers _mainControllers;
 
+        private EnemyInitialization _enemyInitialization;
         private WayPointController _wayPointController;
         private NavMeshAgent _playerNavMeshAgent;
         private PlayerView _player;
@@ -27,10 +29,11 @@ namespace DinoHitMaster.Player
 
         #region Constructor
 
-        public PlayerInitialization(Data data, MainControllers mainControllers)
+        public PlayerInitialization(Data data, MainControllers mainControllers, EnemyInitialization enemyInitialization)
         {
             _data = data;
             _mainControllers = mainControllers;
+            _enemyInitialization = enemyInitialization;
         }
 
         #endregion
@@ -52,12 +55,9 @@ namespace DinoHitMaster.Player
             TryGetCompontents();
             WayPointSubscribe();
 
-            var playerMovement = new PlayerMovement(_playerNavMeshAgent, _animator, _wayPointController.WayPoints);
+            var playerMovement = new PlayerMovement(_playerNavMeshAgent, _animator, _wayPointController.WayPoints, _data, _enemyInitialization.CheckEnemy);
             var playerShooting = new PlayerShooting(_data);
             new InputController(_mainControllers, playerMovement, playerShooting);
-
-            //_touch = Input.GetTouch(0);
-            //Vector3 touchPosition = Camera.main.ScreenToWorldPoint(_touch.position);
         }
 
         #endregion

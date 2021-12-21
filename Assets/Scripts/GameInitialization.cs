@@ -13,18 +13,19 @@ namespace DinoHitMaster
         public void StartGame(Data data, MainControllers mainControllers)
         {
             List<IInitialization> InitializeObjectList = new List<IInitialization>();
-
-            InitializeObjectList.Add(PlayerInitialize(data, mainControllers));
-            InitializeObjectList.Add(EnemyIntialize(data, mainControllers));
+            var enemyInitialize = EnemyIntialize(data, mainControllers);
+            InitializeObjectList.Add(enemyInitialize);
+            InitializeObjectList.Add(PlayerInitialize(data, mainControllers, enemyInitialize));
+            
 
             AddInMainController(InitializeObjectList, mainControllers);
 
             mainControllers.Initialization();
         }
 
-        private PlayerInitialization PlayerInitialize(Data data, MainControllers mainControllers)
+        private PlayerInitialization PlayerInitialize(Data data, MainControllers mainControllers, EnemyInitialization enemyInitialize)
         {
-            return new PlayerInitialization(data, mainControllers);
+            return new PlayerInitialization(data, mainControllers, enemyInitialize);
         }
 
         private EnemyInitialization EnemyIntialize(Data data, MainControllers mainControllers)

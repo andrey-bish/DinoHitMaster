@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using DinoHitMaster.Interface;
-using DinoHitMaster.DataSet;
 
 
 namespace DinoHitMaster.Helper
 {
     class EnemyListener
     {
+        public Animator EnemyAnimator;
+        public BoxCollider EnemyBoxCollider;
+
         public bool _isShowPlease = false;
 
         public void Add(IEnemy value)
@@ -22,8 +23,10 @@ namespace DinoHitMaster.Helper
 
         private void ActivateRagDoll(IEnemy enemy)
         {
-            var enemyAnimator = enemy.GetAnimator();
-            enemyAnimator.enabled = false;
+            EnemyAnimator = enemy.GetAnimator();
+            EnemyAnimator.enabled = false;
+            EnemyBoxCollider = enemy.GetBoxCollider();
+            EnemyBoxCollider.enabled = false;
             Remove(enemy);
         }
 

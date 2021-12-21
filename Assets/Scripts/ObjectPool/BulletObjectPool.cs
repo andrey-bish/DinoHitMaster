@@ -36,12 +36,6 @@ namespace DinoHitMaster.ObjectPool
             return (bullet as MonoBehaviour).GetComponent<Rigidbody>();
         }
 
-        public static T GetBullet<T>(Data data, Transform touchTransform) where T: IAmmunition
-        {
-            var bullet = GetBullets(data, touchTransform);
-            return (T)bullet;
-        }
-
         private static IAmmunition GetBullets(Data data, Transform touchTransform)
         {
             _data = data;

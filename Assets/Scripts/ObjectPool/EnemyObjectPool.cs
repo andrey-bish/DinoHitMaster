@@ -18,13 +18,13 @@ namespace DinoHitMaster.ObjectPool
 
         public static EnemyListener _listenerHitShowDamage;
 
-        private static IEnemy CreateEnemy(string typeEnemies)
+        private static IEnemy CreateEnemy(string typeEnemies, Transform spawnTransform)
         {
             IEnemy enemy = null;
             switch (typeEnemies)
             {
                 case ("EnemyView"):
-                    enemy = new EnemyFactory(_data, _listenerHitShowDamage).Create(new Health(10.0f));
+                    enemy = new EnemyFactory(_data, _listenerHitShowDamage).Create(new Health(10.0f), spawnTransform);
                     break;
                 default:
                     throw new NullReferenceException("The specified enemy type was not found.");
@@ -45,7 +45,7 @@ namespace DinoHitMaster.ObjectPool
                 
         }
 
-        public static T GetEnemy<T>(Data data) where T : IEnemy
+        public static T GetEnemy<T>(Data data, Transform spawnTransform) where T : IEnemy
         {
             _data = data;
             var type = typeof(T).Name;
@@ -54,12 +54,16 @@ namespace DinoHitMaster.ObjectPool
             var enemy = list.FirstOrDefault(x => !(x as MonoBehaviour).gameObject.activeSelf);
             if (enemy == null)
             {
-                enemy = CreateEnemy(type);
+                enemy = CreateEnemy(type, spawnTransform);
                 list.Add(enemy);
             }
             else
             {
                 _listenerHitShowDamage.Add(enemy);
+                enemy.Recreate();
+                _listenerHitShowDamage.EnemyAnimator.enabled = true;
+                _listenerHitShowDamage.EnemyBoxCollider.enabled = true;
+                
             }
             (enemy as MonoBehaviour).gameObject.SetActive(true);
             return (T)enemy;
