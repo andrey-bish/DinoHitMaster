@@ -6,6 +6,5 @@ namespace DinoHitMaster.Views
 {
     class PlayerView: MonoBehaviour, IPlayer
     {
-
     }
 }

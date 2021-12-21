@@ -37,6 +37,9 @@ namespace DinoHitMaster.Views
         public void Recreate()
         {
             _health.SetHp();
+            _enemyAnimator.enabled = true;
+            _enemyCollider.enabled = true;
+            _health.OnDeath += Death;
         }
 
         public void Hit(float damage)
@@ -46,19 +49,15 @@ namespace DinoHitMaster.Views
 
         public void Death()
         {
-            EnemyDead?.Invoke(this); 
+            EnemyDead?.Invoke(this);
         }
         
         private void OnDisable()
         {
-            EnemyObjectPool.ReturnToPool(this);
+            Debug.Log("OnDisable");
+            _health.OnDeath -= Death;
         }
 
-        private void OnBecameInvisible()
-        {
-            EnemyObjectPool.ReturnToPool(this);
-        }
 
-        
     }
 }

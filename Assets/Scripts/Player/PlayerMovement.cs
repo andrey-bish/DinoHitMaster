@@ -12,14 +12,14 @@ namespace DinoHitMaster.Player
     {
         #region Fields
 
+        public int CurrentWayPointIndex;
+
+        private WayPointView[] _wayPoints;
+
         private NavMeshAgent _playerNavMeshAgent;
         private CheckEnemy _checkEnemy;
         private Animator _playerAnimator;
         private Data _data;
-
-        private WayPointView[] _wayPoints;
-
-        private int _currentWayPointIndex;
 
         #endregion
 
@@ -42,21 +42,20 @@ namespace DinoHitMaster.Player
 
         public void Move()
         {
-            var hasIsLive =  _checkEnemy.CheckingActiveEnemyAnimator(_currentWayPointIndex);
+            var hasIsLive =  _checkEnemy.CheckingActiveEnemyAnimator(CurrentWayPointIndex);
             if (!_playerAnimator.GetBool("IsMoving") && !hasIsLive)
             {
                 _data.Player.IsLockShooting = true;
-                if (_currentWayPointIndex < _wayPoints.Length - 1)
+                if (CurrentWayPointIndex < _wayPoints.Length - 1)
                 {
                     _playerNavMeshAgent.enabled = true;
-                    _currentWayPointIndex++;
+                    CurrentWayPointIndex++;
                     _playerAnimator.SetBool("IsMoving", true);
-                    _playerNavMeshAgent.SetDestination(_wayPoints[_currentWayPointIndex].transform.position);
+                    _playerNavMeshAgent.SetDestination(_wayPoints[CurrentWayPointIndex].transform.position);
                 }
-                else if (_currentWayPointIndex >= _wayPoints.Length - 1)
+                else 
                 {
-                    Debug.Log("End wayPoints");
-
+                    CurrentWayPointIndex = 0;
                 }
             }
             else

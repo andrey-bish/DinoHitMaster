@@ -19,8 +19,8 @@ namespace DinoHitMaster.Factories
         }
         public IEnemy Create(Health health, Transform spawnTransform)
         {
-            Vector3 pos = new Vector3(Random.Range(spawnTransform.position.x - 2.0f, spawnTransform.position.x + 2.0f),
-                spawnTransform.position.y, Random.Range(spawnTransform.position.z - 2.0f, spawnTransform.position.z + 2.0f));
+            Vector3 pos = new Vector3(Random.Range(spawnTransform.position.x - 1.0f, spawnTransform.position.x + 1.0f),
+                spawnTransform.position.y, Random.Range(spawnTransform.position.z - 1.0f, spawnTransform.position.z + 1.0f));
 
             var enemy = Object.Instantiate(_dataEnemy.EnemyPrefab, pos, spawnTransform.rotation, spawnTransform);
 

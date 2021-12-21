@@ -12,6 +12,7 @@ namespace DinoHitMaster.Enemy
     class EnemyInitialization: IInitialization
     {
         public CheckEnemy CheckEnemy;
+        public EnemySpawnView EnemySpawn;
 
         private readonly Data _data;
         private readonly MainControllers _mainControllers;
@@ -24,20 +25,20 @@ namespace DinoHitMaster.Enemy
 
         public void Initialization()
         {
-            var spawn = Object.FindObjectOfType<EnemySpawnView>();
+            EnemySpawn = Object.FindObjectOfType<EnemySpawnView>();
             EnemyObjectPool._listenerHitShowDamage = new EnemyListener();
-            SpawnEnemy(spawn);
+            SpawnEnemy();
 
-            CheckEnemy = new CheckEnemy(spawn._enemiesSpanwLocation);
+            CheckEnemy = new CheckEnemy(EnemySpawn._enemiesSpanwLocation);
         }
 
-        private void SpawnEnemy(EnemySpawnView enemySpawn)
+        public void SpawnEnemy()
         {
-            for (int i = 0; i < enemySpawn._enemiesSpanwLocation.Length; i++)
+            for (int i = 0; i < EnemySpawn._enemiesSpanwLocation.Length; i++)
             {
-                EnemyObjectPool.GetEnemy<EnemyView>(_data, enemySpawn._enemiesSpanwLocation[i].transform);
-                EnemyObjectPool.GetEnemy<EnemyView>(_data, enemySpawn._enemiesSpanwLocation[i].transform);
-                enemySpawn._enemiesSpanwLocation[i]._enemyViews = enemySpawn._enemiesSpanwLocation[i].GetComponentsInChildren<EnemyView>();
+                EnemyObjectPool.GetEnemy<EnemyView>(_data, EnemySpawn._enemiesSpanwLocation[i].transform);
+                EnemyObjectPool.GetEnemy<EnemyView>(_data, EnemySpawn._enemiesSpanwLocation[i].transform);
+                EnemySpawn._enemiesSpanwLocation[i]._enemyViews = EnemySpawn._enemiesSpanwLocation[i].GetComponentsInChildren<EnemyView>();
             }
         }
     }

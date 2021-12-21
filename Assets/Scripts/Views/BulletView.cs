@@ -13,7 +13,6 @@ namespace DinoHitMaster.Views
 
         private void OnTriggerEnter(Collider collider)
         {
-            Debug.Log(collider.name);
             if(collider.gameObject.TryGetComponent<IEnemy>(out var hitObject))
             {
                 Debug.Log(hitObject);

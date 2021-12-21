@@ -55,9 +55,15 @@ namespace DinoHitMaster.ObjectPool
         private static HashSet<IAmmunition> GetListBullet(string typeBullet)
         {
             if (_bulletCollection.ContainsKey(typeBullet))
+            {
                 return _bulletCollection[typeBullet];
+            }    
+               
             else
+            {
                 return _bulletCollection[typeBullet] = new HashSet<IAmmunition>();
+            }
+                
         }
 
         public static void ReturnToPool(IAmmunition bullet)

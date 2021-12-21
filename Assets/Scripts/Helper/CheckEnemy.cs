@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using UnityEngine;
 using DinoHitMaster.Views;
 
 
@@ -15,9 +16,14 @@ namespace DinoHitMaster.Helper
 
         public bool CheckingActiveEnemyAnimator(int indexWayPoint)
         {
-            var loc = _enemyLocations[indexWayPoint];
-            var check = loc._enemyViews.Any(o => o._enemyAnimator.enabled);
-            return check;
+            if(indexWayPoint < _enemyLocations.Length)
+            {
+                var loc = _enemyLocations[indexWayPoint];
+                var check = loc._enemyViews.Any(o => o._enemyAnimator.enabled);
+                return check;
+            }
+
+            return true;
         }
     }
 }

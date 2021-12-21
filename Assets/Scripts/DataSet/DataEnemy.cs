@@ -13,5 +13,7 @@ namespace DinoHitMaster.DataSet
         public CheckEnemy checkEnemyExemplar;
 
         public Vector3 SpawnSpread;
+
+        public float EnemyHp;
     }
 }

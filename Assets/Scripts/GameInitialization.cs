@@ -13,9 +13,13 @@ namespace DinoHitMaster
         public void StartGame(Data data, MainControllers mainControllers)
         {
             List<IInitialization> InitializeObjectList = new List<IInitialization>();
+
             var enemyInitialize = EnemyIntialize(data, mainControllers);
+            var playerInitialze = (PlayerInitialize(data, mainControllers, enemyInitialize));
+
             InitializeObjectList.Add(enemyInitialize);
-            InitializeObjectList.Add(PlayerInitialize(data, mainControllers, enemyInitialize));
+            InitializeObjectList.Add(playerInitialze);
+            InitializeObjectList.Add(SceneManager(data, playerInitialze, enemyInitialize));
             
 
             AddInMainController(InitializeObjectList, mainControllers);
@@ -33,6 +37,10 @@ namespace DinoHitMaster
             return new EnemyInitialization(data, mainControllers);
         }
 
+        private SceneManager SceneManager(Data data, PlayerInitialization playerInitialization, EnemyInitialization enemyInitialize)
+        {
+            return new SceneManager(data, playerInitialization, enemyInitialize);
+        }
 
         private void AddInMainController(List<IInitialization> InitializeObjectList, MainControllers mainControllers)
         {

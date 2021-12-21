@@ -24,7 +24,7 @@ namespace DinoHitMaster.ObjectPool
             switch (typeEnemies)
             {
                 case ("EnemyView"):
-                    enemy = new EnemyFactory(_data, _listenerHitShowDamage).Create(new Health(10.0f), spawnTransform);
+                    enemy = new EnemyFactory(_data, _listenerHitShowDamage).Create(new Health(_data.Enemy.EnemyHp), spawnTransform);
                     break;
                 default:
                     throw new NullReferenceException("The specified enemy type was not found.");
@@ -34,6 +34,7 @@ namespace DinoHitMaster.ObjectPool
 
         private static HashSet<IEnemy> GetListEnemy(string typeEnemies)
         {
+            Debug.Log(typeEnemies);
             if (_enemyCollection.ContainsKey(typeEnemies))
             {
                 return _enemyCollection[typeEnemies];
@@ -61,9 +62,6 @@ namespace DinoHitMaster.ObjectPool
             {
                 _listenerHitShowDamage.Add(enemy);
                 enemy.Recreate();
-                _listenerHitShowDamage.EnemyAnimator.enabled = true;
-                _listenerHitShowDamage.EnemyBoxCollider.enabled = true;
-                
             }
             (enemy as MonoBehaviour).gameObject.SetActive(true);
             return (T)enemy;
