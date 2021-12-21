@@ -21,10 +21,11 @@ MonoBehaviour:
     type: 3}
   SimpeBulletView: {fileID: 2189272783713086019, guid: 80e3f639775e6b64e834f27eb4977aa3,
     type: 3}
-  SimpleBulletDamage: 1
+  SimpleBulletDamage: 10
   Particle: {fileID: 0}
   TypeBullet: SimpleBullet
   BulletSpeed: 3
+  CurrentIndexWP: 0
   Speed: 3.5
   RotationPlayer: {x: 0, y: 30, z: 0}
   PlayerAnimatorController: {fileID: 9100000, guid: f9cdc7a3eb199b843a58c42ab1dc6b43,

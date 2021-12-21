@@ -18,6 +18,8 @@ namespace DinoHitMaster.DataSet
         public GameObject Particle;
         public string TypeBullet;
         public float BulletSpeed;
+        public int CurrentIndexWP;
+        public bool IsLockShooting;
 
         [Header("Player parametrs")]
         public float Speed;

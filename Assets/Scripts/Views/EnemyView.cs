@@ -12,6 +12,7 @@ namespace DinoHitMaster.Views
         public event Action<IEnemy> EnemyDead;
 
         public Animator _enemyAnimator;
+        public BoxCollider _enemyCollider;
 
         private Health _health;
 
@@ -19,13 +20,26 @@ namespace DinoHitMaster.Views
         {
             return _enemyAnimator.GetComponent<Animator>();
         }
+
+        public BoxCollider GetBoxCollider()
+        {
+            return _enemyCollider.GetComponent<BoxCollider>();
+        }
+
         public void SetHealth(Health health)
         {
             if(_health == null || _health.CurrentHp <= 0)
             {
                 _health = health;
-                Debug.Log(_health);
             }
+        }
+
+        public void Recreate()
+        {
+            _health.SetHp();
+            _enemyAnimator.enabled = true;
+            _enemyCollider.enabled = true;
+            _health.OnDeath += Death;
         }
 
         public void Hit(float damage)
@@ -35,12 +49,15 @@ namespace DinoHitMaster.Views
 
         public void Death()
         {
-            EnemyDead?.Invoke(this); 
+            EnemyDead?.Invoke(this);
         }
         
         private void OnDisable()
         {
-            EnemyObjectPool.ReturnToPool(this);
+            Debug.Log("OnDisable");
+            _health.OnDeath -= Death;
         }
+
+
     }
 }

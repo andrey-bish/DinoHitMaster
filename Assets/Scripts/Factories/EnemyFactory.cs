@@ -17,14 +17,16 @@ namespace DinoHitMaster.Factories
 
             _enemyListener = enemyListener;
         }
-        public IEnemy Create(Health health)
+        public IEnemy Create(Health health, Transform spawnTransform)
         {
-            var enemy = Object.Instantiate(_dataEnemy.EnemyPrefab);
+            Vector3 pos = new Vector3(Random.Range(spawnTransform.position.x - 1.0f, spawnTransform.position.x + 1.0f),
+                spawnTransform.position.y, Random.Range(spawnTransform.position.z - 1.0f, spawnTransform.position.z + 1.0f));
+
+            var enemy = Object.Instantiate(_dataEnemy.EnemyPrefab, pos, spawnTransform.rotation, spawnTransform);
+
             enemy.SetHealth(health);
             health.OnDeath += enemy.Death;
             _enemyListener.Add(enemy);
-            //Прописать спавн
-            new EnemiesSpawner().RandomSpawnLocation(enemy);
             
             return enemy;
         }

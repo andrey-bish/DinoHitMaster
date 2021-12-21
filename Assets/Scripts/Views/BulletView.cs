@@ -11,10 +11,11 @@ namespace DinoHitMaster.Views
 
         public float Damage { set => _damage = value; }
 
-        private void OnTriggerEnter(Collider collier)
+        private void OnTriggerEnter(Collider collider)
         {
-            if(collier.gameObject.TryGetComponent<IEnemy>(out var hitObject))
+            if(collider.gameObject.TryGetComponent<IEnemy>(out var hitObject))
             {
+                Debug.Log(hitObject);
                 hitObject.Hit(_damage);
             }
             Destroy();

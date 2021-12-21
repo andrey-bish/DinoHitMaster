@@ -20,7 +20,7 @@ namespace DinoHitMaster.Controllers
         {
             if(Input.touchCount > 0)
             {
-                //_playerMovement.Move();
+                _playerMovement.Move();
                 _playerShooting.Shoot();
             }
         }
