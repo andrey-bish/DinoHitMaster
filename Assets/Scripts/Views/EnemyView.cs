@@ -69,7 +69,6 @@ namespace DinoHitMaster.Views
         
         private void OnDisable()
         {
-            Debug.Log("OnDisable");
             _health.OnDeath -= Death;
         }
 

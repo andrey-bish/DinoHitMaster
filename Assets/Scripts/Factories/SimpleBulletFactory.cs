@@ -16,11 +16,11 @@ namespace DinoHitMaster.Factories
 
         public IAmmunition Create(float damage)
         {
-            var bullet = Object.Instantiate(_data.Player.SimpeBulletView);
+            var bullet = Object.Instantiate(_data.Weapon.SimpeBulletView);
             Rigidbody rigitbody;
             if (!bullet.TryGetComponent(out rigitbody))
                 rigitbody = bullet.gameObject.AddComponent<Rigidbody>();
-            bullet.Damage = _data.Player.SimpleBulletDamage;
+            bullet.Damage = damage;
             return bullet;
         }
     }

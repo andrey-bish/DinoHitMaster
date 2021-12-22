@@ -24,7 +24,7 @@ namespace DinoHitMaster.ObjectPool
             switch(typeBullet)
             {
                 case "SimpleBullet":
-                    bullet = new SimpleBulletFactory(_data).Create(_data.Player.SimpleBulletDamage);
+                    bullet = new SimpleBulletFactory(_data).Create(_data.Weapon.SimpleBulletDamage);
                     break;
                 default:
                     throw new NullReferenceException("The specified bullet type was not found");
@@ -46,7 +46,7 @@ namespace DinoHitMaster.ObjectPool
         private static IAmmunition GetBullets(Data data, Transform touchTransform)
         {
             _data = data;
-            var typeBullet = _data.Player.TypeBullet;
+            var typeBullet = _data.Weapon.TypeBullet;
             var list = GetListBullet(typeBullet);
             var bullet = list.FirstOrDefault(x => !(x as MonoBehaviour).gameObject.activeSelf);
             if (bullet == null)

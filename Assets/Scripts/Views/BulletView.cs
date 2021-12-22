@@ -15,7 +15,6 @@ namespace DinoHitMaster.Views
         {
             if(collider.gameObject.TryGetComponent<IEnemy>(out var hitObject))
             {
-                Debug.Log(hitObject);
                 hitObject.Hit(_damage);
             }
             Destroy();

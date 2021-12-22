@@ -44,7 +44,7 @@ namespace DinoHitMaster.Controllers
             enemies = Object.FindObjectsOfType<EnemyView>();
             _wayPointController = _playerInitialization.WayPointController;
 
-            _data.Player.TypeBullet = "SimpleBullet";
+            _data.Weapon.TypeBullet = "SimpleBullet";
 
             _camera = Camera.main;
             _camera.transform.parent = _playerInitialization.Player.transform;

@@ -45,7 +45,7 @@ namespace DinoHitMaster.Player
             var hasIsLive =  _checkEnemy.CheckingActiveEnemyAnimator(CurrentWayPointIndex);
             if (!_playerAnimator.GetBool("IsMoving") && !hasIsLive)
             {
-                _data.Player.IsLockShooting = true;
+                _data.Weapon.IsLockShooting = true;
                 if (CurrentWayPointIndex < _wayPoints.Length - 1)
                 {
                     _playerNavMeshAgent.enabled = true;
@@ -60,7 +60,7 @@ namespace DinoHitMaster.Player
             }
             else
             {
-                _data.Player.IsLockShooting = false;
+                _data.Weapon.IsLockShooting = false;
             }
         }
 

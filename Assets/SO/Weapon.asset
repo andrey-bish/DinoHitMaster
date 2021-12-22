@@ -12,3 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8951743b621cc3343a7bd6779f1d1077, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
+  SimpeBulletView: {fileID: 4290025456063842930, guid: 07660c6da4a42b948a933c7e36e1c675,
+    type: 3}
+  Particle: {fileID: 0}
+  TypeBullet: SimpleBullet
+  SimpleBulletDamage: 10
+  BulletSpeed: 15
+  FireCooldown: 1
+  IsLockShooting: 0

@@ -41,7 +41,6 @@ namespace DinoHitMaster.ObjectPool
 
         private static HashSet<IEnemy> GetListEnemy(string typeEnemies)
         {
-            Debug.Log(typeEnemies);
             if (_enemyCollection.ContainsKey(typeEnemies))
             {
                 return _enemyCollection[typeEnemies];

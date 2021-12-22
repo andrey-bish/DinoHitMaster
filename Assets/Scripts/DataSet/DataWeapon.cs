@@ -8,11 +8,14 @@ namespace DinoHitMaster.DataSet
     class DataWeapon: ScriptableObject
     {
         public BulletView SimpeBulletView;
-        public float SimpleBulletDamage;
         public GameObject Particle;
+
         public string TypeBullet;
+
+        public float SimpleBulletDamage;
         public float BulletSpeed;
-        public int CurrentIndexWP;
+        public float FireCooldown;
+
         public bool IsLockShooting;
     }
 }
