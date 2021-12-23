@@ -10,7 +10,5 @@ namespace DinoHitMaster.Interface
         void SetHealth(Health health);
         void Hit(float damage);
         void Recreate();
-        Animator GetAnimator();
-        BoxCollider GetBoxCollider();
      }
 }

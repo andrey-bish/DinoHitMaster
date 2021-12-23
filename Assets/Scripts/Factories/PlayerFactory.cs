@@ -10,6 +10,7 @@ namespace DinoHitMaster.Factories
         public T Create<T>(GameObject gameObject, Vector3 playerRotation) where T : IPlayer
         {
             var player = (IPlayer)Object.Instantiate(gameObject).AddComponent<PlayerView>();
+
             return (T)player;
         }
     }

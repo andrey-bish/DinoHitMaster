@@ -10,10 +10,10 @@ namespace DinoHitMaster.DataSet
         public GameObject PlayerMenPrefab;
         public GameObject PlayerWomanPrefab;
 
-        [Header("Player parametrs")]
+        [Header("Player parameters")]
         public float Speed;
         public Vector3 RotationPlayer;
-        public RuntimeAnimatorController PlayerAnimatorController;
+        
         public Avatar PlayerAvatar;
     }
 }

@@ -17,6 +17,7 @@ namespace DinoHitMaster.Factories
 
             _enemyListener = enemyListener;
         }
+
         public IEnemy Create(Health health, Transform spawnTransform)
         {
             Vector3 pos = new Vector3(Random.Range(spawnTransform.position.x - 1.0f, spawnTransform.position.x + 1.0f),

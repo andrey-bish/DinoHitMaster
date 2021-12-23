@@ -17,7 +17,7 @@ namespace DinoHitMaster.Player
         private WayPointView[] _wayPoints;
 
         private NavMeshAgent _playerNavMeshAgent;
-        private CheckEnemy _checkEnemy;
+        private CheckStatusEnemyAnimator _checkEnemy;
         private Animator _playerAnimator;
         private Data _data;
 
@@ -26,7 +26,7 @@ namespace DinoHitMaster.Player
 
         #region Consructor
 
-        public PlayerMovement(NavMeshAgent playerNavMeshAgent, Animator playerAnimator, WayPointView[] wayPoints, Data data, CheckEnemy checkEnemy)
+        public PlayerMovement(NavMeshAgent playerNavMeshAgent, Animator playerAnimator, WayPointView[] wayPoints, Data data, CheckStatusEnemyAnimator checkEnemy)
         {
             _playerNavMeshAgent = playerNavMeshAgent;
             _playerAnimator = playerAnimator;

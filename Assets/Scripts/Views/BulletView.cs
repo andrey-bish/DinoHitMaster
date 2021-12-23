@@ -8,6 +8,7 @@ namespace DinoHitMaster.Views
     class BulletView: MonoBehaviour, IAmmunition
     {
         private float _damage;
+        private float trust = 10.0f;
 
         public float Damage { set => _damage = value; }
 
@@ -16,6 +17,8 @@ namespace DinoHitMaster.Views
             if(collider.gameObject.TryGetComponent<IEnemy>(out var hitObject))
             {
                 hitObject.Hit(_damage);
+                var enemyRigidbody = (hitObject as MonoBehaviour).transform.Find("Root/Hips");
+                enemyRigidbody.GetComponent<Rigidbody>().AddForce(-trust, -trust, 0, ForceMode.Impulse);
             }
             Destroy();
         }

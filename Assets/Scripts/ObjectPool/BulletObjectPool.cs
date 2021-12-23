@@ -16,6 +16,8 @@ namespace DinoHitMaster.ObjectPool
 
         private static Data _data;
 
+        private static Vector3 _direction;
+
         #region Create Bullet
 
         private static IAmmunition Create(string typeBullet)
@@ -37,13 +39,13 @@ namespace DinoHitMaster.ObjectPool
 
         #region GetBullet Method
 
-        public static Rigidbody GetBullet(Data data, Transform touchTransform)
+        public static Rigidbody GetBullet(Data data, Transform weaponShootPosition)
         {
-            var bullet = GetBullets(data, touchTransform);
+            var bullet = GetBullets(data, weaponShootPosition);
             return (bullet as MonoBehaviour).GetComponent<Rigidbody>();
         }
 
-        private static IAmmunition GetBullets(Data data, Transform touchTransform)
+        private static IAmmunition GetBullets(Data data, Transform weaponShootPosition)
         {
             _data = data;
             var typeBullet = _data.Weapon.TypeBullet;
@@ -54,7 +56,8 @@ namespace DinoHitMaster.ObjectPool
                 bullet = Create(typeBullet);
                 list.Add(bullet);
             }
-            (bullet as MonoBehaviour).transform.position = touchTransform.position;
+            
+            (bullet as MonoBehaviour).transform.position = weaponShootPosition.position;
             (bullet as MonoBehaviour).gameObject.SetActive(true);
             return bullet;
         }

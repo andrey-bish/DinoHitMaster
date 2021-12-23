@@ -1,4 +1,7 @@
-﻿namespace DinoHitMaster.Interface
+﻿using UnityEngine;
+
+
+namespace DinoHitMaster.Interface
 {
     interface IBulletFactory
     {

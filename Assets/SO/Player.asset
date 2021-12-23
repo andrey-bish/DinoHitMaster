@@ -12,23 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05387c64e927259428a0807ef8ba9453, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 1241480083151519607, guid: fe4572fe5edca8340b88c997a680070f,
-    type: 3}
   PlayerMenPrefab: {fileID: 2370622618179777670, guid: fe4572fe5edca8340b88c997a680070f,
     type: 3}
   PlayerWomanPrefab: {fileID: 0}
-  CubePref: {fileID: 1909702923585145667, guid: 80e3f639775e6b64e834f27eb4977aa3,
-    type: 3}
-  SimpeBulletView: {fileID: 2189272783713086019, guid: 80e3f639775e6b64e834f27eb4977aa3,
-    type: 3}
-  SimpleBulletDamage: 10
-  Particle: {fileID: 0}
-  TypeBullet: SimpleBullet
-  BulletSpeed: 15
-  CurrentIndexWP: 0
-  IsLockShooting: 0
   Speed: 3.5
   RotationPlayer: {x: 0, y: 30, z: 0}
-  PlayerAnimatorController: {fileID: 9100000, guid: f9cdc7a3eb199b843a58c42ab1dc6b43,
-    type: 2}
+  OneHandWeapon: {fileID: 9100000, guid: f9cdc7a3eb199b843a58c42ab1dc6b43, type: 2}
+  TwoHandWeapon: {fileID: 9100000, guid: 0bf1f8b859f25554d982542282cd0241, type: 2}
   PlayerAvatar: {fileID: 9000000, guid: f53e4f2657401244388960077a79e5ee, type: 2}
+  TestAnimationClip: {fileID: 0}

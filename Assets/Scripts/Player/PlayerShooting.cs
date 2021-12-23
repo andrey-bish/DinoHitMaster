@@ -10,18 +10,18 @@ namespace DinoHitMaster.Player
     {
         private readonly Data _data;
 
-        private Transform _weaponTransform;
+        private Transform _weaponShootPosition;
         private Touch _touch;
 
         private float _zTouchOffset = 10.0f;
         private float _lastFireTime = 0.0f;
         private float _shotCooldown;
 
-        public PlayerShooting(Data data)
+        public PlayerShooting(Data data, IWeapon weapon)
         {
             _data = data;
-            _weaponTransform = GameObject.Find("ShootPosition").transform;
-            _shotCooldown = _data.Weapon.FireCooldown;
+            _weaponShootPosition = weapon.ShootPosition;
+            _shotCooldown = weapon.FireCooldown;
         }
 
         public void Shoot()
@@ -34,7 +34,7 @@ namespace DinoHitMaster.Player
                     var direction = new Vector3(_touch.position.x, _touch.position.y - 2.0f, _zTouchOffset);
                     var touchPosition = Camera.main.ScreenToWorldPoint(direction);
                     _lastFireTime = Time.time;
-                    var bullet = BulletObjectPool.GetBullet(_data, _weaponTransform);
+                    var bullet = BulletObjectPool.GetBullet(_data, _weaponShootPosition);
                     bullet.velocity = touchPosition.normalized * _data.Weapon.BulletSpeed;
                 }
             }

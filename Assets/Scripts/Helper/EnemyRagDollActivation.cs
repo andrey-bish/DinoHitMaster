@@ -7,7 +7,7 @@ namespace DinoHitMaster.Helper
     class EnemyRagDollActivation
     {
         private Animator EnemyAnimator;
-        private BoxCollider EnemyBoxCollider;
+        private CapsuleCollider EnemyCollider;
 
         public void Add(IEnemy value)
         {
@@ -21,11 +21,11 @@ namespace DinoHitMaster.Helper
 
         private void ActivateRagDoll(IEnemy enemy)
         {
-            EnemyAnimator = enemy.GetAnimator();
+            EnemyAnimator = (enemy as MonoBehaviour).GetComponent<Animator>();
             EnemyAnimator.enabled = false;
 
-            EnemyBoxCollider = enemy.GetBoxCollider();
-            EnemyBoxCollider.enabled = false;
+            EnemyCollider = (enemy as MonoBehaviour).GetComponent<CapsuleCollider>();
+            EnemyCollider.enabled = false;
 
             Remove(enemy);
         }

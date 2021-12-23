@@ -15,8 +15,15 @@ MonoBehaviour:
   SimpeBulletView: {fileID: 4290025456063842930, guid: 07660c6da4a42b948a933c7e36e1c675,
     type: 3}
   Particle: {fileID: 0}
-  TypeBullet: SimpleBullet
-  SimpleBulletDamage: 10
   BulletSpeed: 15
-  FireCooldown: 1
+  SimpleBulletDamage: 10
+  PistolPrefab: {fileID: -594367134509046872, guid: 47810468749797f4a970e02cfbb8ef79,
+    type: 3}
+  PistolFireCooldown: 1
+  AssaultRiflePrefab: {fileID: -2295905318013718355, guid: 0ad6527c82d9d9845b53fb15a6ba14f4,
+    type: 3}
+  AssaultRifleFireCooldown: 0.3
+  OneHandWeapon: {fileID: 9100000, guid: f9cdc7a3eb199b843a58c42ab1dc6b43, type: 2}
+  TwoHandWeapon: {fileID: 9100000, guid: 0bf1f8b859f25554d982542282cd0241, type: 2}
+  TypeBullet: SimpleBullet
   IsLockShooting: 0

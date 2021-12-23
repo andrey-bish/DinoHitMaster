@@ -1,15 +1,14 @@
 ﻿using System.Linq;
-using UnityEngine;
 using DinoHitMaster.Views;
 
 
 namespace DinoHitMaster.Helper
 {
-    class CheckEnemy
+    class CheckStatusEnemyAnimator
     {
         private EnemyLocation[] _enemyLocations;
 
-        public CheckEnemy(EnemyLocation[] enemyLocation)
+        public CheckStatusEnemyAnimator(EnemyLocation[] enemyLocation)
         {
             _enemyLocations = enemyLocation;
         }

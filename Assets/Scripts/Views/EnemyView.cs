@@ -13,7 +13,8 @@ namespace DinoHitMaster.Views
         public event Action<IEnemy> EnemyDead;
 
         public Animator _enemyAnimator;
-        public BoxCollider _enemyCollider;
+        public CapsuleCollider _enemyCollider;
+        public Rigidbody _enemyRigidBody;
 
         private Health _health;
 
@@ -21,20 +22,6 @@ namespace DinoHitMaster.Views
 
 
         #region IEnemy realization
-
-        #region GetComponent Methods
-
-        public Animator GetAnimator()
-        {
-            return _enemyAnimator.GetComponent<Animator>();
-        }
-
-        public BoxCollider GetBoxCollider()
-        {
-            return _enemyCollider.GetComponent<BoxCollider>();
-        }
-
-        #endregion
 
         public void SetHealth(Health health)
         {

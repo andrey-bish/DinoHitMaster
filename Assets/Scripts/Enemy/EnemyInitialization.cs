@@ -11,7 +11,7 @@ namespace DinoHitMaster.Enemy
 {
     class EnemyInitialization: IInitialization
     {
-        public CheckEnemy CheckEnemy;
+        public CheckStatusEnemyAnimator CheckStatusEnemyAnimator;
         public EnemySpawnView EnemySpawn;
 
         private readonly Data _data;
@@ -30,7 +30,7 @@ namespace DinoHitMaster.Enemy
 
             SpawnEnemy();
 
-            CheckEnemy = new CheckEnemy(EnemySpawn._enemiesSpanwLocation);
+            CheckStatusEnemyAnimator = new CheckStatusEnemyAnimator(EnemySpawn._enemiesSpanwLocation);
         }
 
         public void SpawnEnemy()

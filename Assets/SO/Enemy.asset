@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d43973ba30605845b85670b4ea3de0b, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 7580764182316063272, guid: 23365d63535e5e345be77372d7346057,
+  EnemyPrefab: {fileID: 7580764182316063272, guid: 6babcf61d7d1cfa4b8c07746839e8048,
     type: 3}
-  SpawnSpread: {x: 1, y: 0, z: 1}
+  SpawnSpread: {x: 1.5, y: 0, z: 1.5}
   EnemyHp: 10
