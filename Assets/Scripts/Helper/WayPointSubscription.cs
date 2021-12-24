@@ -12,6 +12,7 @@ namespace DinoHitMaster.Helper
         private readonly DataPlayer _dataPlayer;
 
         private WayPointController _wayPointController;
+        private ShootPosition _shootPosition;
 
         private NavMeshAgent _playerNavMeshAgent;
         private Transform _playerTransform;
@@ -24,14 +25,22 @@ namespace DinoHitMaster.Helper
             _playerNavMeshAgent = playerNavMeshAgent;
             _playerTransform = playerTransform;
             _playerAnimator = playerAnimator;
+            _shootPosition = new ShootPosition(_playerNavMeshAgent, _playerTransform, _playerAnimator, _dataPlayer.RotationPlayer);
         }
 
         public void Subscribe()
         {
-            var shootPositing = new ShootPosition(_playerNavMeshAgent, _playerTransform, _playerAnimator, _dataPlayer.RotationPlayer);
             foreach (var wayPoint in _wayPointController.WayPoints)
             {
-                wayPoint.InsideWayPoint += shootPositing.IncomeShootPosition;
+                wayPoint.InsideWayPoint += _shootPosition.IncomeShootPosition;
+            }
+        }
+
+        public void Unsubscribe()
+        {
+            foreach (var wayPoint in _wayPointController.WayPoints)
+            {
+                wayPoint.InsideWayPoint -= _shootPosition.IncomeShootPosition;
             }
         }
     }

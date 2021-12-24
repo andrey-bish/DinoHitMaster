@@ -10,7 +10,7 @@ using DinoHitMaster.Enemy;
 
 namespace DinoHitMaster.Player
 {
-    class PlayerInitialization: IInitialization
+    class PlayerInitialization: IInitialization, ICleanup
     {
         #region Fields
 
@@ -22,6 +22,7 @@ namespace DinoHitMaster.Player
         private readonly MainControllers _mainControllers;
 
         private EnemyInitialization _enemyInitialization;
+        private WayPointSubscription _wayPointSubscription;
         private NavMeshAgent _playerNavMeshAgent;
         private Animator _playerAnimator;
 
@@ -54,7 +55,8 @@ namespace DinoHitMaster.Player
             //Временная симуляция выбора оружия
             var weapon = new WeaponCreater(_data, _playerAnimator).CreateWeapon("TwoHand");
 
-            new WayPointSubscription(_data.Player, WayPointController, _playerNavMeshAgent, Player.transform, _playerAnimator).Subscribe();
+            _wayPointSubscription = new WayPointSubscription(_data.Player, WayPointController, _playerNavMeshAgent, Player.transform, _playerAnimator);
+            _wayPointSubscription.Subscribe();
 
             PlayerMovement = new PlayerMovement(_playerNavMeshAgent, _playerAnimator, WayPointController.WayPoints, _data, _enemyInitialization.CheckStatusEnemyAnimator);
             var playerShooting = new PlayerShooting(_data, weapon);
@@ -80,7 +82,17 @@ namespace DinoHitMaster.Player
                 _playerNavMeshAgent.speed = _data.Player.Speed;
             }
         }
-        
+
+        #endregion
+
+
+        #region ICleanup realization
+
+        public void Cleanup()
+        {
+            _wayPointSubscription.Unsubscribe();
+        }
+
         #endregion
     }
 }
